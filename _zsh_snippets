@@ -1,0 +1,38 @@
+#compdef zsh_snippets
+#autoload
+
+local curcontext="$curcontext" state line ret=1
+local -a _configs
+
+_arguments -C \
+  '1: :->cmds' \
+  '2:: :->snippets ' && ret=0
+
+case $state in
+  cmds)
+    _values "zsh-snippets command" \
+        "add[create (or update) the snippet]" \
+        "delete[delete the snippet if exists]" \
+        "list[list all existing snippets]"
+    ret=0
+    ;;
+  snippets)
+    case $line[1] in
+      add|delete)
+		SNIPPET_FILE=~/.zsh_snippets
+		local snippets;
+		typeset -A zshSnippetArr
+
+		local snippetsFile; snippetsFile=$(_show_zsh_snippets_file)
+		source $snippetsFile
+		for k in "${(@k)zshSnippetArr}"; do
+			snippets+=("$k:$zshSnippetArr[$k]")
+		done
+
+		_describe -t snippets 'snippet' snippets && ret=0
+        ;;
+    esac
+    ;;
+esac
+
+return ret
