@@ -5,7 +5,7 @@ Persistent zsh-snippets based on [willghatch/zsh-snippets](https://github.com/wi
 - add, udpate, delete, list snippets
 - supports auto-completion
 
-![](https://github.com/1ambda/zsh-snippets/blob/master/images/screenshot_highq.gif)
+![](https://github.com/1ambda/zsh-snippets/blob/master/images/usage_high.gif)
 
 ## Install: zplug
 
